@@ -23,6 +23,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1,
+  a,
   p,
   input,
   textarea,
