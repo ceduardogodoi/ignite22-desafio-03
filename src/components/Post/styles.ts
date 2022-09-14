@@ -6,6 +6,7 @@ export const Container = styled.div`
   padding: 2rem;
   background: ${props => props.theme['base-post']};
   border-radius: 10px;
+  cursor: pointer;
 
   & > header {
     display: flex;
@@ -30,5 +31,10 @@ export const Container = styled.div`
     -webkit-line-clamp: 4;
     -webkit-box-orient: vertical;
     overflow: hidden;
+    color: ${props => props.theme['base-text']};
+  }
+
+  &:hover {
+    outline: 2px solid ${props => props.theme['base-label']};
   }
 `
