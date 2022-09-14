@@ -24,6 +24,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1,
+  h2,
   a,
   p,
   input,
