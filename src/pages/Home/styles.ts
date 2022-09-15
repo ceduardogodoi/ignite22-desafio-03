@@ -77,3 +77,10 @@ export const SearchContainer = styled.section`
     }
   }
 `
+
+export const PostsContainer = styled.section`
+  margin-top: 3rem;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+`

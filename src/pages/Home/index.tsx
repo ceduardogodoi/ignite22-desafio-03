@@ -3,7 +3,14 @@ import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "../../components/Link";
 import { Input } from "../../components/Input";
-import { AvatarContainer, InfoContainer, ProfileCard, SearchContainer } from "./styles";
+import { Post } from '../../components/Post';
+import {
+  AvatarContainer,
+  InfoContainer,
+  PostsContainer,
+  ProfileCard,
+  SearchContainer
+} from "./styles";
 import avatarImg from '../../assets/avatars/cameron-williamson.png'
 
 export function Home() {
@@ -55,6 +62,13 @@ export function Home() {
           <Input placeholder="Buscar conteúdo" />
         </div>
       </SearchContainer>
+
+      <PostsContainer>
+        <Post />
+        <Post />
+        <Post />
+        <Post />
+      </PostsContainer>
     </>
   )
 }
