@@ -4,7 +4,9 @@ import { Container } from './styles'
 export function Header() {
   return (
     <Container>
-      <img src={logoImg} alt="Github Blog Logo" />
+      <div>
+        <img src={logoImg} alt="Github Blog Logo" />
+      </div>
     </Container>
   )
 }
