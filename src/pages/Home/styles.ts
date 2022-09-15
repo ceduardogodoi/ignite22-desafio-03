@@ -1,9 +1,8 @@
 import styled from 'styled-components'
 
-export const ProfileCard = styled.div`
+export const ProfileCard = styled.section`
   margin: 0 auto;
   padding: 2rem 2.5rem;
-  max-width: 54rem;
   border-radius: 10px;
   background: ${props => props.theme['base-profile']};
   display: flex;
@@ -47,6 +46,34 @@ export const InfoContainer = styled(ContainerBase)`
       display: flex;
       align-items: center;
       column-gap: 0.5rem;
+    }
+  }
+`
+
+export const SearchContainer = styled.section`
+  display: flex;
+  flex-direction: column;
+  row-gap: 12px;
+
+  & > header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    & h2 {
+      font-size: 1.125rem;
+      color: ${props => props.theme['base-subtitle']};
+    }
+
+    & span {
+      font-size: 0.875rem;
+      color: ${props => props.theme['base-span']};
+    }
+  }
+
+  & > div {
+    & input {
+      width: 100%;
     }
   }
 `

@@ -1,8 +1,9 @@
-import { AvatarContainer, InfoContainer, ProfileCard } from "./styles";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "../../components/Link";
+import { Input } from "../../components/Input";
+import { AvatarContainer, InfoContainer, ProfileCard, SearchContainer } from "./styles";
 import avatarImg from '../../assets/avatars/cameron-williamson.png'
 
 export function Home() {
@@ -42,6 +43,18 @@ export function Home() {
           </footer>
         </InfoContainer>
       </ProfileCard>
+
+      <SearchContainer>
+        <header>
+          <h2>Publicações</h2>
+
+          <span>6 publicações</span>
+        </header>
+
+        <div>
+          <Input placeholder="Buscar conteúdo" />
+        </div>
+      </SearchContainer>
     </>
   )
 }
