@@ -7,9 +7,12 @@ export const Link = styled(LinkRouter)`
   font-weight: 700;
   text-transform: uppercase;
   text-decoration: none;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: transparent;
 
   &:hover {
-    border-bottom: 1px solid ${props => props.theme.blue};
+    border-bottom-color: ${props => props.theme.blue};
   }
 
   & span {

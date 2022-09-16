@@ -21,18 +21,18 @@ export function Post() {
         <h1>JavaScript data types and data structures</h1>
 
         <footer>
-          <div>
+          <a href="https://google.com">
             <FontAwesomeIcon icon={faGithub} />
             <span>cameronwll</span>
-          </div>
-          <div>
+          </a>
+          <a href="https://google.com">
             <FontAwesomeIcon icon={faCalendarDay} />
             <span>Há 1 dia</span>
-          </div>
-          <div>
+          </a>
+          <a href="https://google.com">
             <FontAwesomeIcon icon={faComment} />
             <span>5 comentários</span>
-          </div>
+          </a>
         </footer>
       </PostCard>
 

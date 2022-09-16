@@ -38,14 +38,19 @@ export const InfoContainer = styled(ContainerBase)`
     margin: 0.5rem 0 1.5rem 0;
   }
 
-  & > footer {
+  & footer {
     display: flex;
     column-gap: 1.5rem;
 
-    & > div {
+    & a {
       display: flex;
       align-items: center;
       column-gap: 0.5rem;
+      text-decoration: none;
+
+      &:visited {
+        color: inherit;
+      }
     }
   }
 `

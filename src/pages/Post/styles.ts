@@ -35,10 +35,15 @@ export const PostCard = styled.header`
     display: flex;
     column-gap: 2rem;
 
-    & div {
+    & a {
       display: flex;
       align-items: center;
       column-gap: 0.5rem;
+      text-decoration: none;
+
+      &:visited {
+        color: inherit;
+      }
     }
   }
 `

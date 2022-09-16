@@ -35,18 +35,18 @@ export function Home() {
           </div>
 
           <footer>
-            <div>
+            <a href="https://google.com">
               <FontAwesomeIcon icon={faGithub} />
               <span>cameronwll</span>
-            </div>
-            <div>
+            </a>
+            <a href="https://google.com">
               <FontAwesomeIcon icon={faBuilding} />
               <span>Rocketseat</span>
-            </div>
-            <div>
+            </a>
+            <a href="https://google.com">
               <FontAwesomeIcon icon={faUserGroup} />
               <span>32 Seguidores</span>
-            </div>
+            </a>
           </footer>
         </InfoContainer>
       </ProfileCard>
