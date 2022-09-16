@@ -1,8 +1,9 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
-import { faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons'
-import { Link } from "../../components/Link";
+import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import { useUserContext } from '../../contexts/UserContext';
 import { Input } from "../../components/Input";
+import { Link } from '../../components/Link/styles';
 import { Post } from '../../components/Post';
 import {
   AvatarContainer,
@@ -11,44 +12,50 @@ import {
   ProfileCard,
   SearchContainer
 } from "./styles";
-import avatarImg from '../../assets/avatars/cameron-williamson.png'
 
 export function Home() {
+  const user = useUserContext()
+
   return (
     <>
       <ProfileCard>
-        <AvatarContainer>
-          <img src={avatarImg} width={148} height={148} alt="" />
-        </AvatarContainer>
+        {user && (
+          <>
+            <AvatarContainer>
+              <img src={user.avatar_url} width={148} height={148} alt="" />
+            </AvatarContainer>
 
-        <InfoContainer>
-          <header>
-            <h1>Cameron Williamson</h1>
+            <InfoContainer>
+              <header>
+                <h1>{user.name}</h1>
 
-            <Link to="/">Github</Link>
-          </header>
+                <Link href={user.html_url}>
+                  <span>Github</span>
+                  <FontAwesomeIcon icon={faArrowUpRightFromSquare} width={12} height={12} />
+                </Link>
+              </header>
 
-          <div>
-            <p>
-              Tristique volutpat pulvinar vel massa, pellentesque egestas. Eu viverra massa quam dignissim aenean malesuada suscipit. Nunc, volutpat pulvinar vel mass.
-            </p>
-          </div>
+              <div>
+                <p>{user.bio ? user.bio : 'Este usuário não possui uma Bio'}</p>
+              </div>
 
-          <footer>
-            <a href="https://google.com">
-              <FontAwesomeIcon icon={faGithub} />
-              <span>cameronwll</span>
-            </a>
-            <a href="https://google.com">
-              <FontAwesomeIcon icon={faBuilding} />
-              <span>Rocketseat</span>
-            </a>
-            <a href="https://google.com">
-              <FontAwesomeIcon icon={faUserGroup} />
-              <span>32 Seguidores</span>
-            </a>
-          </footer>
-        </InfoContainer>
+              <footer>
+                <a href={user.html_url}>
+                  <FontAwesomeIcon icon={faGithub} />
+                  <span>{user.login}</span>
+                </a>
+                <div>
+                  <FontAwesomeIcon icon={faBuilding} />
+                  <span>{user.company}</span>
+                </div>
+                <div>
+                  <FontAwesomeIcon icon={faUserGroup} />
+                  <span>{user.followers} Seguidores</span>
+                </div>
+              </footer>
+            </InfoContainer>
+          </>
+        )}
       </ProfileCard>
 
       <SearchContainer>

@@ -18,7 +18,9 @@ const ContainerBase = styled.div`
 `
 
 export const AvatarContainer = styled(ContainerBase)`
-  border-radius: 8px;
+  & img {
+    border-radius: 8px;
+  }
 `
 
 export const InfoContainer = styled(ContainerBase)`
@@ -42,7 +44,8 @@ export const InfoContainer = styled(ContainerBase)`
     display: flex;
     column-gap: 1.5rem;
 
-    & a {
+    & a,
+      div {
       display: flex;
       align-items: center;
       column-gap: 0.5rem;
