@@ -37,7 +37,7 @@ export function Home() {
           <footer>
             <div>
               <FontAwesomeIcon icon={faGithub} />
-              <span>Github</span>
+              <span>cameronwll</span>
             </div>
             <div>
               <FontAwesomeIcon icon={faBuilding} />

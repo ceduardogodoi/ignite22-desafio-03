@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faBuilding, faChevronLeft, faUserGroup } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarDay, faChevronLeft, faComment, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 import { Link } from "../../components/Link";
 import { BackLink, PostCard } from "./styles";
 
@@ -22,18 +22,21 @@ export function Post() {
         <footer>
           <div>
             <FontAwesomeIcon icon={faGithub} />
-            <span>Github</span>
+            <span>cameronwll</span>
           </div>
           <div>
-            <FontAwesomeIcon icon={faBuilding} />
-            <span>Rocketseat</span>
+            <FontAwesomeIcon icon={faCalendarDay} />
+            <span>Há 1 dia</span>
           </div>
           <div>
-            <FontAwesomeIcon icon={faUserGroup} />
-            <span>32 Seguidores</span>
+            <FontAwesomeIcon icon={faComment} />
+            <span>5 comentários</span>
           </div>
         </footer>
       </PostCard>
+
+      <section>
+      </section>
     </>
   )
 }
