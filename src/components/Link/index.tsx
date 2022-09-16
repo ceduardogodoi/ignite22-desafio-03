@@ -5,12 +5,12 @@ import * as S from './styles'
 
 export function Link({ to, children, ...props }: LinkProps) {
   return (
-    <S.Link
+    <S.RouterLink
       to={to}
       {...props}
     >
       <span>{children}</span>
       <FontAwesomeIcon icon={faArrowUpRightFromSquare} width={12} height={12} />
-    </S.Link>
+    </S.RouterLink>
   )
 }

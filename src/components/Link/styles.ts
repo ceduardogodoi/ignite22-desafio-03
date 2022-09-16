@@ -1,7 +1,7 @@
 import { Link as LinkRouter } from 'react-router-dom'
-import styled from 'styled-components'
+import styled, { css } from 'styled-components'
 
-export const Link = styled(LinkRouter)`
+const styles = css`
   color: ${props => props.theme.blue};
   font-size: 0.75rem;
   font-weight: 700;
@@ -18,4 +18,12 @@ export const Link = styled(LinkRouter)`
   & span {
     margin-right: 0.5rem;
   }
+`
+
+export const RouterLink = styled(LinkRouter)`
+  ${styles}
+`
+
+export const Link = styled.a`
+  ${styles}
 `
