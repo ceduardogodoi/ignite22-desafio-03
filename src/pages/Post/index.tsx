@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCalendarDay, faChevronLeft, faComment, faUserGroup } from '@fortawesome/free-solid-svg-icons'
@@ -36,6 +37,8 @@ export function Post() {
       </PostCard>
 
       <section>
+        <ReactMarkdown># Hello, *world*!</ReactMarkdown>
+        <ReactMarkdown>## react-markdown</ReactMarkdown>
       </section>
     </>
   )
