@@ -10,7 +10,7 @@ export function Link({ to, children, ...props }: LinkProps) {
       {...props}
     >
       <span>{children}</span>
-      <FontAwesomeIcon icon={faArrowUpRightFromSquare} />
+      <FontAwesomeIcon icon={faArrowUpRightFromSquare} width={12} height={12} />
     </S.Link>
   )
 }
