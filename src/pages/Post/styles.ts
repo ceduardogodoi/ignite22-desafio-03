@@ -35,10 +35,11 @@ export const PostCard = styled.header`
     display: flex;
     column-gap: 2rem;
 
-    & a {
+    & div {
       display: flex;
       align-items: center;
       column-gap: 0.5rem;
+      color: ${props => props.theme['base-span']};
       text-decoration: none;
 
       &:visited {

@@ -18,7 +18,6 @@ import { useIssueContext } from '../../contexts/IssueContext'
 export function Home() {
   const user = useUserContext()
   const issues = useIssueContext()
-  console.log(issues)
 
   return (
     <>
