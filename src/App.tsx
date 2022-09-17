@@ -2,6 +2,7 @@ import { BrowserRouter } from 'react-router-dom'
 import { ThemeProvider } from 'styled-components'
 import { SkeletonTheme } from 'react-loading-skeleton'
 import { Router } from './Router'
+import { IssueContextProvider } from './contexts/IssueContext'
 import { GlobalStyle } from './styles/global'
 import { defaultTheme } from './styles/themes/default'
 
@@ -15,7 +16,9 @@ function App() {
         highlightColor={defaultTheme['base-label']}
       >
         <BrowserRouter>
-          <Router />
+          <IssueContextProvider>
+            <Router />
+          </IssueContextProvider>
         </BrowserRouter>
       </SkeletonTheme>
     </ThemeProvider>
