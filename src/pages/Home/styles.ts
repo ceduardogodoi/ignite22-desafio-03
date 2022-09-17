@@ -18,21 +18,35 @@ const ContainerBase = styled.div`
 `
 
 export const AvatarContainer = styled(ContainerBase)`
-  & img {
-    border-radius: 8px;
+  min-width: 148px;
+  min-height: 148px;
+  border-radius: 8px;
+
+  * {
+    min-width: inherit;
+    min-height: inherit;
+    border-radius: inherit;
   }
 `
 
 export const InfoContainer = styled(ContainerBase)`
+  width: 100%;
+
   & header {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    column-gap: 1.5rem;
 
     & h1 {
+      flex: 1;
       color: ${props => props.theme['base-title']};
       font-size: 1.5rem;
       line-height: 130%;
+    }
+
+    & div:last-child {
+      min-width: 67px;
     }
   }
 
@@ -44,11 +58,12 @@ export const InfoContainer = styled(ContainerBase)`
     display: flex;
     column-gap: 1.5rem;
 
-    & a,
-      div {
+    & > * {
       display: flex;
       align-items: center;
       column-gap: 0.5rem;
+      min-width: 130px;
+      color: ${props => props.theme['base-title']};
       text-decoration: none;
 
       &:visited {

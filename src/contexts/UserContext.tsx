@@ -13,7 +13,7 @@ interface User {
   html_url: string
   name: string;
   company: string
-  bio: string | null;
+  bio?: string | null;
   followers: number;
 }
 
@@ -29,9 +29,6 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
   async function fetchUser() {
     const response = await api.get<User>('/users/ceduardogodoi')
     setUser(response.data)
-    // setTimeout(() => {
-    //   setUser(response.data)
-    // }, 3000)
   }
 
   useEffect(() => {
