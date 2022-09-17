@@ -10,7 +10,7 @@ export function Post() {
     <>
       <PostCard>
         <nav>
-          <BackLink to="/">
+          <BackLink href="/">
             <FontAwesomeIcon icon={faChevronLeft} width={12} height={12} />
             <span>Voltar</span>
           </BackLink>

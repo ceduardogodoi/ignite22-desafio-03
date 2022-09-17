@@ -2,6 +2,7 @@ import { Link as LinkRouter } from 'react-router-dom'
 import styled, { css } from 'styled-components'
 
 const styles = css`
+  padding: 0.5rem 0;
   color: ${props => props.theme.blue};
   font-size: 0.75rem;
   font-weight: 700;

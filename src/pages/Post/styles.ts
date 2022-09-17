@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Link } from 'react-router-dom'
+import { Link } from '../../components/Link/styles'
 
 export const PostCard = styled.header`
   margin: 0 auto;
@@ -49,16 +49,8 @@ export const PostCard = styled.header`
 `
 
 export const BackLink = styled(Link)`
-  color: ${props => props.theme.blue};
-  font-size: 0.75rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  text-decoration: none;
-  display: inline-flex;
-  align-items: center;
-  column-gap: 0.5rem;
-
-  &:hover {
-    border-bottom: 1px solid ${props => props.theme.blue};
+  & span {
+    margin-left: 0.5rem;
+    margin-right: initial;
   }
 `
