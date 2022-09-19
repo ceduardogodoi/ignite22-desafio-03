@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import Skeleton from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
 import { Issue } from '../../contexts/IssueContext'
+import { relativeDateFormatter } from '../../utils/formatter'
 import { ContainerLink } from "./styles";
 
 interface PostProps {
@@ -14,7 +15,7 @@ export function Post({ issue }: PostProps) {
       <header>
         <h2>{issue ? issue.title : <Skeleton />}</h2>
 
-        <span>{true ? 'Há 1 dia' : <Skeleton />}</span>
+        <span>{issue ? relativeDateFormatter(issue.updated_at) : <Skeleton />}</span>
       </header>
 
       <div className="content">

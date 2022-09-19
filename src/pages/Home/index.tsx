@@ -18,9 +18,9 @@ import {
 
 export function Home() {
   const user = useUserContext()
-  const issues = useIssueContext()
+  const issueContext = useIssueContext()
 
-  const issuesAmount = issues?.length ?? 0
+  const issuesAmount = issueContext?.issues?.length ?? 0
 
   return (
     <>
@@ -101,9 +101,9 @@ export function Home() {
       </SearchContainer>
 
       <PostsContainer>
-        {issues ? (
+        {issueContext && issueContext.issues ? (
           <>
-            {issues.map(issue => (
+            {issueContext.issues.map(issue => (
               <Post key={issue.id} issue={issue} />
             ))}
           </>

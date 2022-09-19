@@ -10,22 +10,20 @@ import {
 import { Link } from '../../components/Link/styles'
 import { dateFormatter, relativeDateFormatter } from '../../utils/formatter'
 import { BackLink, PostCard } from './styles';
-
-const issue = {
-  "url": "https://api.github.com/repos/ceduardogodoi/ignite22-desafio-03/issues/1",
-  "html_url": "https://github.com/ceduardogodoi/ignite22-desafio-03/issues/1",
-  "id": 1376797738,
-  "title": "Dummy issue for testing",
-  "user": {
-    "login": "ceduardogodoi"
-  },
-  "comments": 0,
-  "created_at": "2022-09-17T15:11:15Z",
-  "updated_at": "2022-09-17T15:12:11Z",
-  "body": "# Dummy issue\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ad.\r\n\r\n> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ad.\r\n\r\n```typescript\r\nfunction sayHelloTo(name: string) {\r\n  console.log(`Hello, ${name}!`)\r\n}\r\n```"
-}
+import { useIssueContext } from '../../contexts/IssueContext';
 
 export function Post() {
+  const context = useIssueContext()
+
+  if (!context || !context.selectedIssue) {
+    return (
+      <PostCard>
+        <p>Favor selecionar uma issue</p>
+      </PostCard>
+    )
+  }
+
+  const { selectedIssue: issue } = context
   return (
     <>
       <PostCard>

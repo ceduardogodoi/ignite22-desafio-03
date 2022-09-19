@@ -24,7 +24,7 @@ export const ContainerLink = styled(Link)`
     }
 
     & > span {
-      width: 53px;
+      min-width: fit-content;
       color: ${props => props.theme['base-span']};
       font-size: 14px;
 
