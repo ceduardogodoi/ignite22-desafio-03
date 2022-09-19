@@ -1,4 +1,11 @@
-import { createContext, ReactNode, useContext, useState } from 'react'
+import {
+  createContext,
+  ReactNode,
+  useCallback,
+  useContext,
+  useState
+} from 'react'
+import debounce from 'lodash.debounce'
 import { api } from '../lib/axios'
 import { User } from './UserContext'
 
@@ -21,8 +28,9 @@ interface Search {
 }
 
 interface IssueContextType {
+  isLoading: boolean
   selectedIssue?: Issue;
-  filteredIssues?: Issue[];
+  filteredIssues: Issue[];
   filterIssues(search: string): void
 }
 
@@ -33,9 +41,10 @@ interface IssueContextProviderProps {
 }
 
 export function IssueContextProvider({ children }: IssueContextProviderProps) {
-  const [filteredIssues, setFilteresIssues] = useState<Issue[] | undefined>(undefined)
+  const [isLoading, setIsLoading] = useState(false)
+  const [filteredIssues, setFilteresIssues] = useState<Issue[]>([])
 
-  async function filterIssues(search: string) {
+  const debounceFilter = useCallback(debounce(async (search: string) => {
     const encodedSearch = encodeURIComponent(search)
     const response = await api.get<Search>('/search/issues', {
       params: {
@@ -43,10 +52,17 @@ export function IssueContextProvider({ children }: IssueContextProviderProps) {
       }
     })
     setFilteresIssues(response.data.items)
+    setIsLoading(false)
+  }, 500), [])
+
+  function filterIssues(search: string) {
+    setIsLoading(true)
+    debounceFilter(search)
   }
 
   return (
     <IssueContext.Provider value={{
+      isLoading,
       filteredIssues,
       filterIssues
     }}>

@@ -117,16 +117,26 @@ export function Home() {
       </SearchContainer>
 
       <PostsContainer>
-        {issueContext && issueContext.filteredIssues ? (
-          <PostsGrid>
-            {issueContext.filteredIssues.map(issue => (
-              <Post key={issue.id} issue={issue} />
-            ))}
-          </PostsGrid>
-        ) : (
+        {issueContext?.isLoading ? (
+          <div>
+            <h3>Procurando...</h3>
+          </div>
+        ) : search === '' ? (
           <div>
             <h3>Busque por publicações</h3>
           </div>
+        ) : (
+          issueContext && issueContext.filteredIssues.length > 0 ? (
+            <PostsGrid>
+              {issueContext.filteredIssues.map(issue => (
+                <Post key={issue.id} issue={issue} />
+              ))}
+            </PostsGrid>
+          ) : (
+            <div>
+              <h3>Não foram encontradas publicações com a busca informada</h3>
+            </div>
+          )
         )}
       </PostsContainer>
     </>
