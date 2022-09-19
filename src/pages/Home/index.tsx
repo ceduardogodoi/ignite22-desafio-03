@@ -3,6 +3,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
 import { faArrowUpRightFromSquare, faBuilding, faUserGroup } from '@fortawesome/free-solid-svg-icons'
 import { useUserContext } from '../../contexts/UserContext'
+import { useIssueContext } from '../../contexts/IssueContext'
+import { pluralize } from '../../utils/formatter'
 import { Input } from "../../components/Input";
 import { Link } from '../../components/Link/styles';
 import { Post } from '../../components/Post';
@@ -13,11 +15,12 @@ import {
   ProfileCard,
   SearchContainer
 } from "./styles";
-import { useIssueContext } from '../../contexts/IssueContext'
 
 export function Home() {
   const user = useUserContext()
   const issues = useIssueContext()
+
+  const issuesAmount = issues?.length ?? 0
 
   return (
     <>
@@ -76,7 +79,7 @@ export function Home() {
             {user ? (
               <div>
                 <FontAwesomeIcon icon={faUserGroup} />
-                <span>{user.followers} Seguidores</span>
+                <span>{user.followers} {pluralize('Seguidor', user.followers)}</span>
               </div>
             ) : (
               <Skeleton />
@@ -89,7 +92,7 @@ export function Home() {
         <header>
           <h2>Publicações</h2>
 
-          <span>6 publicações</span>
+          <span>{issuesAmount} {pluralize('publicação', issuesAmount)}</span>
         </header>
 
         <div>
@@ -98,10 +101,17 @@ export function Home() {
       </SearchContainer>
 
       <PostsContainer>
-        <Post />
-        <Post />
-        <Post />
-        <Post />
+        {issues ? (
+          <>
+            {issues.map(issue => (
+              <Post key={issue.id} issue={issue} />
+            ))}
+          </>
+        ) : (
+          <>
+            {Array(4).fill('').map((_, index) => <Post key={index} />)}
+          </>
+        )}
       </PostsContainer>
     </>
   )

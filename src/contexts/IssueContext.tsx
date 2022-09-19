@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { api } from '../lib/axios'
 import { User } from './UserContext'
 
 // Issue URL example
@@ -17,7 +18,7 @@ const issue = {
   "body": "# Dummy issue\r\n\r\nLorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ad.\r\n\r\n> Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo, ad.\r\n\r\n```typescript\r\nfunction sayHelloTo(name: string) {\r\n  console.log(`Hello, ${name}!`)\r\n}\r\n```"
 }
 
-interface Issue {
+export interface Issue {
   id: number;
   url: string;
   title: string;
@@ -38,8 +39,13 @@ interface IssueContextProviderProps {
 export function IssueContextProvider({ children }: IssueContextProviderProps) {
   const [issues, setIssues] = useState<Issue[] | undefined>(undefined)
 
+  async function fetchIssues() {
+    const response = await api.get<Issue[]>('/repos/ceduardogodoi/ignite22-desafio-03/issues')
+    setIssues(response.data)
+  }
+
   useEffect(() => {
-    setIssues([issue])
+    fetchIssues()
   }, [])
 
   return (

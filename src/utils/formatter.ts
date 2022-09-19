@@ -18,3 +18,17 @@ export function relativeDateFormatter(dateISO: string) {
   })
     .format(-difference, 'day')
 }
+
+export function pluralize(word: string, amount: number) {
+  if (amount < 2) {
+    return word
+  }
+
+  if (/ção$/g.test(word)) {
+    return word.replace('ção', 'ções')
+  } else if (/dor$/g) {
+    return word.replace('dor', 'dores')
+  }
+
+  return word
+}
