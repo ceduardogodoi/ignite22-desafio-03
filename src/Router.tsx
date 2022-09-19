@@ -13,7 +13,7 @@ export function Router() {
             <Home />
           </UserContextProvider>
         } />
-        <Route path="/post" element={<Post />} />
+        <Route path="/post/:id" element={<Post />} />
       </Route>
     </Routes>
   )
