@@ -1,25 +1,32 @@
-import { Link } from 'react-router-dom';
-import Skeleton from 'react-loading-skeleton'
 import ReactMarkdown from 'react-markdown'
-import { Issue } from '../../contexts/IssueContext'
+import { Issue, useIssueContext } from '../../contexts/IssueContext'
 import { relativeDateFormatter } from '../../utils/formatter'
 import { ContainerLink } from "./styles";
 
 interface PostProps {
-  issue?: Issue
+  issue: Issue
 }
 
 export function Post({ issue }: PostProps) {
-  return (
-    <ContainerLink as={!issue ? 'div' : Link} to={issue ? `/post/${issue.id}` : '/'}>
-      <header>
-        <h2>{issue ? issue.title : <Skeleton />}</h2>
+  const issueContext = useIssueContext()
 
-        <span>{issue ? relativeDateFormatter(issue.updated_at) : <Skeleton />}</span>
+  function handlePostClick() {
+    issueContext?.selectIssue(issue.id)
+  }
+
+  return (
+    <ContainerLink
+      to={`/post/${issue.id}`}
+      onClick={handlePostClick}
+    >
+      <header>
+        <h2>{issue.title}</h2>
+
+        <span>{relativeDateFormatter(issue.updated_at)}</span>
       </header>
 
       <div className="content">
-        {issue ? <ReactMarkdown>{issue.body}</ReactMarkdown> : <Skeleton count={4} />}
+        {<ReactMarkdown>{issue.body}</ReactMarkdown>}
       </div>
     </ContainerLink>
   )

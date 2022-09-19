@@ -32,6 +32,7 @@ interface IssueContextType {
   selectedIssue?: Issue;
   filteredIssues: Issue[];
   filterIssues(search: string): void
+  selectIssue(issueId: number): void
 }
 
 export const IssueContext = createContext<IssueContextType | undefined>(undefined)
@@ -43,6 +44,7 @@ interface IssueContextProviderProps {
 export function IssueContextProvider({ children }: IssueContextProviderProps) {
   const [isLoading, setIsLoading] = useState(false)
   const [filteredIssues, setFilteresIssues] = useState<Issue[]>([])
+  const [selectedIssue, setSelectedIssue] = useState<Issue | undefined>(undefined)
 
   const debounceFilter = useCallback(debounce(async (search: string) => {
     const encodedSearch = encodeURIComponent(search)
@@ -60,11 +62,18 @@ export function IssueContextProvider({ children }: IssueContextProviderProps) {
     debounceFilter(search)
   }
 
+  function selectIssue(issueId: number) {
+    const issue = filteredIssues.find(issue => issue.id === issueId)
+    setSelectedIssue(issue)
+  }
+
   return (
     <IssueContext.Provider value={{
       isLoading,
+      selectedIssue,
       filteredIssues,
-      filterIssues
+      filterIssues,
+      selectIssue
     }}>
       {children}
     </IssueContext.Provider>
