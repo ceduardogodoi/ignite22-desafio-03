@@ -97,6 +97,10 @@ export const SearchContainer = styled.section`
   & > div {
     & input {
       width: 100%;
+
+      &:disabled {
+        cursor: not-allowed;
+      }
     }
   }
 `

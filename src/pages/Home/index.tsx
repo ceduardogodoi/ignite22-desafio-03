@@ -21,6 +21,7 @@ export function Home() {
   const issueContext = useIssueContext()
 
   const issuesAmount = issueContext?.issues?.length ?? 0
+  const isDisabled = !issueContext?.issues
 
   return (
     <>
@@ -96,7 +97,7 @@ export function Home() {
         </header>
 
         <div>
-          <Input placeholder="Buscar conteúdo" />
+          <Input placeholder={isDisabled ? 'Carregando issues...' : 'Buscar conteúdo'} disabled={isDisabled} />
         </div>
       </SearchContainer>
 
