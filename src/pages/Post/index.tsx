@@ -58,8 +58,7 @@ export function Post() {
       </PostCard>
 
       <section>
-        <ReactMarkdown># Hello, *world*!</ReactMarkdown>
-        <ReactMarkdown>## react-markdown</ReactMarkdown>
+        <ReactMarkdown>{issue.body}</ReactMarkdown>
       </section>
     </>
   )

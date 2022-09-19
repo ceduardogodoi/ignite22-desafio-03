@@ -28,8 +28,8 @@ export function UserContextProvider({ children }: UserContextProviderProps) {
 
   async function fetchUser() {
     const response = await api.get<User>('/users/ceduardogodoi')
-    setUser(response.data)
-    // setTimeout(() => setUser(response.data), 5000)
+    // setUser(response.data)
+    setTimeout(() => setUser(response.data), 5000)
   }
 
   useEffect(() => {

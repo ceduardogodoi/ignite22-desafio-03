@@ -17,7 +17,7 @@ export interface Issue {
 interface IssueContextType {
   issues?: Issue[];
   selectedIssue?: Issue;
-  selectIssue(issueId: number): void
+  selectIssue(issueId?: number): void
 }
 
 export const IssueContext = createContext<IssueContextType | undefined>(undefined)
@@ -32,11 +32,11 @@ export function IssueContextProvider({ children }: IssueContextProviderProps) {
 
   async function fetchIssues() {
     const response = await api.get<Issue[]>('/repos/ceduardogodoi/ignite22-desafio-03/issues')
-    setIssues(response.data)
-    // setTimeout(() => setIssues(response.data), 5000)
+    // setIssues(response.data)
+    setTimeout(() => setIssues(response.data), 5000)
   }
 
-  function selectIssue(issueId: number) {
+  function selectIssue(issueId?: number) {
     const issueFound = issues?.find(issue => issue.id === issueId)
     setSelectedIssue(issueFound)
   }

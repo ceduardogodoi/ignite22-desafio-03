@@ -109,7 +109,7 @@ export function Home() {
           </>
         ) : (
           <>
-            {Array(4).fill('').map((_, index) => <Post key={index} />)}
+            {Array(2).fill('').map((_, index) => <Post key={index} />)}
           </>
         )}
       </PostsContainer>
