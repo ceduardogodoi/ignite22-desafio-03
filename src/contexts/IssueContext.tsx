@@ -1,4 +1,4 @@
-import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
+import { createContext, ReactNode, useContext, useState } from 'react'
 import { api } from '../lib/axios'
 import { User } from './UserContext'
 
@@ -14,10 +14,16 @@ export interface Issue {
   body: string;
 }
 
+interface Search {
+  incomplete_results: boolean;
+  items: Issue[];
+  total_count: number
+}
+
 interface IssueContextType {
-  issues?: Issue[];
   selectedIssue?: Issue;
-  selectIssue(issueId?: number): void
+  filteredIssues?: Issue[];
+  filterIssues(search: string): void
 }
 
 export const IssueContext = createContext<IssueContextType | undefined>(undefined)
@@ -27,29 +33,22 @@ interface IssueContextProviderProps {
 }
 
 export function IssueContextProvider({ children }: IssueContextProviderProps) {
-  const [issues, setIssues] = useState<Issue[] | undefined>(undefined)
-  const [selectedIssue, setSelectedIssue] = useState<Issue | undefined>(undefined)
+  const [filteredIssues, setFilteresIssues] = useState<Issue[] | undefined>(undefined)
 
-  async function fetchIssues() {
-    const response = await api.get<Issue[]>('/repos/ceduardogodoi/ignite22-desafio-03/issues')
-    // setIssues(response.data)
-    setTimeout(() => setIssues(response.data), 5000)
+  async function filterIssues(search: string) {
+    const encodedSearch = encodeURIComponent(search)
+    const response = await api.get<Search>('/search/issues', {
+      params: {
+        q: `${encodedSearch}+repo:ceduardogodoi/ignite22-desafio-03`
+      }
+    })
+    setFilteresIssues(response.data.items)
   }
-
-  function selectIssue(issueId?: number) {
-    const issueFound = issues?.find(issue => issue.id === issueId)
-    setSelectedIssue(issueFound)
-  }
-
-  useEffect(() => {
-    fetchIssues()
-  }, [])
 
   return (
     <IssueContext.Provider value={{
-      issues,
-      selectedIssue,
-      selectIssue
+      filteredIssues,
+      filterIssues
     }}>
       {children}
     </IssueContext.Provider>

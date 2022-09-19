@@ -1,3 +1,4 @@
+import { ChangeEvent, useState } from 'react'
 import Skeleton from 'react-loading-skeleton'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faGithub } from '@fortawesome/free-brands-svg-icons'
@@ -12,6 +13,7 @@ import {
   AvatarContainer,
   InfoContainer,
   PostsContainer,
+  PostsGrid,
   ProfileCard,
   SearchContainer
 } from "./styles";
@@ -20,8 +22,16 @@ export function Home() {
   const user = useUserContext()
   const issueContext = useIssueContext()
 
-  const issuesAmount = issueContext?.issues?.length ?? 0
-  const isDisabled = !issueContext?.issues
+  const [search, setSearch] = useState('')
+
+  const issuesAmount = issueContext?.filteredIssues?.length ?? 0
+
+  function handleChange(event: ChangeEvent<HTMLInputElement>) {
+    const value = event.target.value
+    setSearch(value)
+
+    issueContext?.filterIssues(value)
+  }
 
   return (
     <>
@@ -97,21 +107,26 @@ export function Home() {
         </header>
 
         <div>
-          <Input placeholder={isDisabled ? 'Carregando issues...' : 'Buscar conteúdo'} disabled={isDisabled} />
+          <Input
+            name="search"
+            placeholder="Buscar conteúdo"
+            value={search}
+            onChange={handleChange}
+          />
         </div>
       </SearchContainer>
 
       <PostsContainer>
-        {issueContext && issueContext.issues ? (
-          <>
-            {issueContext.issues.map(issue => (
+        {issueContext && issueContext.filteredIssues ? (
+          <PostsGrid>
+            {issueContext.filteredIssues.map(issue => (
               <Post key={issue.id} issue={issue} />
             ))}
-          </>
+          </PostsGrid>
         ) : (
-          <>
-            {Array(2).fill('').map((_, index) => <Post key={index} />)}
-          </>
+          <div>
+            <h3>Busque por publicações</h3>
+          </div>
         )}
       </PostsContainer>
     </>
